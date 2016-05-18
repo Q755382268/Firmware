@@ -44,6 +44,10 @@ set(config_module_list
 	drivers/camera_trigger
 	drivers/bst
 	drivers/snapdragon_rc_pwm
+	drivers/lis3mdl
+	drivers/bmp280
+	drivers/bma180
+	drivers/bmi160
 
 	#
 	# System commands
@@ -62,12 +66,14 @@ set(config_module_list
 	systemcmds/mtd
 	systemcmds/dumpfile
 	systemcmds/ver
+	systemcmds/sd_bench
 	systemcmds/tests
 
 	#
 	# General system control
 	#
 	modules/commander
+	modules/load_mon
 	modules/navigator
 	modules/mavlink
 	modules/gpio_led
@@ -98,6 +104,7 @@ set(config_module_list
 	# Logging
 	#
 	modules/sdlog2
+	modules/logger
 
 	#
 	# Library modules
@@ -124,6 +131,7 @@ set(config_module_list
 	lib/terrain_estimation
 	lib/runway_takeoff
 	lib/tailsitter_recovery
+	lib/DriverFramework/framework
 	platforms/nuttx
 
 	# had to add for cmake, not sure why wasn't in original config

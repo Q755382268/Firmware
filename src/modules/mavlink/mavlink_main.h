@@ -164,6 +164,10 @@ public:
 
 	bool			get_forwarding_on() { return _forwarding_on; }
 
+	bool			get_config_link_on() { return _config_link_on; }
+
+	void			set_config_link_on(bool on) { _config_link_on = on; }
+
 	/**
 	 * Set the boot complete flag on all instances
 	 *
@@ -353,6 +357,15 @@ public:
 
 	bool			is_usb_uart() { return _is_usb_uart; }
 
+	bool			accepting_commands() { return true; /* non-trivial side effects ((!_config_link_on) || (_mode == MAVLINK_MODE_CONFIG));*/ }
+
+	/**
+	 * Wether or not the system should be logging
+	 */
+	bool			get_logging_enabled() { return _logging_enabled; }
+
+	void			set_logging_enabled(bool logging) { _logging_enabled = logging; }
+
 protected:
 	Mavlink			*next;
 
@@ -458,6 +471,8 @@ private:
 	pthread_mutex_t		_send_mutex;
 
 	bool			_param_initialized;
+	bool			_logging_enabled;
+
 	param_t			_param_system_id;
 	param_t			_param_component_id;
 	param_t			_param_radio_id;
@@ -466,6 +481,7 @@ private:
 	param_t			_param_forward_externalsp;
 
 	unsigned		_system_type;
+	static bool		_config_link_on;
 
 	perf_counter_t		_loop_perf;			/**< loop performance counter */
 	perf_counter_t		_txerr_perf;			/**< TX error counter */

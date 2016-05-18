@@ -105,6 +105,7 @@ set(config_module_list
 	# Logging
 	#
 	modules/sdlog2
+	modules/logger
 
 	#
 	# Library modules
@@ -130,6 +131,7 @@ set(config_module_list
 	lib/terrain_estimation
 	lib/runway_takeoff
 	lib/tailsitter_recovery
+	lib/DriverFramework/framework
 	platforms/nuttx
 
 	# had to add for cmake, not sure why wasn't in original config

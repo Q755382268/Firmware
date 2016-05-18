@@ -93,23 +93,13 @@ PARAM_DEFINE_FLOAT(TRIM_PITCH, 0.0f);
 PARAM_DEFINE_FLOAT(TRIM_YAW, 0.0f);
 
 /**
- * Datalink loss mode enabled.
- *
- * Set to 1 to enable actions triggered when the datalink is lost.
- *
- * @group Commander
- * @boolean
- */
-PARAM_DEFINE_INT32(COM_DL_LOSS_EN, 0);
-
-/**
  * Datalink loss time threshold
  *
  * After this amount of seconds without datalink the data link lost mode triggers
  *
  * @group Commander
  * @unit s
- * @min 0
+ * @min 5
  * @max 300
  * @decimal 1
  * @increment 0.5
@@ -125,7 +115,7 @@ PARAM_DEFINE_INT32(COM_DL_LOSS_T, 10);
  * @group Commander
  * @unit s
  * @min 0
- * @max 30
+ * @max 3
  * @decimal 1
  * @increment 0.5
  */
@@ -137,10 +127,11 @@ PARAM_DEFINE_INT32(COM_DL_REG_T, 0);
  * Engine failure triggers only above this throttle value
  *
  * @group Commander
+ * @unit norm
  * @min 0.0
  * @max 1.0
- * @decimal 1
- * @increment 0.05
+ * @decimal 2
+ * @increment 0.01
  */
 PARAM_DEFINE_FLOAT(COM_EF_THROT, 0.5f);
 
@@ -152,7 +143,7 @@ PARAM_DEFINE_FLOAT(COM_EF_THROT, 0.5f);
  * @group Commander
  * @min 0.0
  * @max 50.0
- * @unit A
+ * @unit A/%
  * @decimal 2
  * @increment 1
  */
@@ -261,6 +252,20 @@ PARAM_DEFINE_INT32(COM_RC_IN_MODE, 0);
 PARAM_DEFINE_INT32(COM_DISARM_LAND, 0);
 
 /**
+ * Battery failsafe mode
+ *
+ * Action the system takes on low battery. Defaults to off
+ *
+ * @group Commander
+ * @value 0 Warning
+ * @value 1 Return to Land
+ * @value 2 Land at current position
+ * @decimal 0
+ * @increment 1
+ */
+PARAM_DEFINE_INT32(COM_LOW_BAT_ACT, 0);
+
+/**
  * First flightmode slot (1000-1160)
  *
  * If the main switch channel is in this range the
@@ -279,6 +284,7 @@ PARAM_DEFINE_INT32(COM_DISARM_LAND, 0);
  * @value 7 Offboard
  * @value 8 Stabilized
  * @value 9 Rattitude
+ * @value 12 Follow Me
  */
 PARAM_DEFINE_INT32(COM_FLTMODE1, -1);
 
@@ -301,6 +307,7 @@ PARAM_DEFINE_INT32(COM_FLTMODE1, -1);
  * @value 7 Offboard
  * @value 8 Stabilized
  * @value 9 Rattitude
+ * @value 12 Follow Me
  */
 PARAM_DEFINE_INT32(COM_FLTMODE2, -1);
 
@@ -323,6 +330,7 @@ PARAM_DEFINE_INT32(COM_FLTMODE2, -1);
  * @value 7 Offboard
  * @value 8 Stabilized
  * @value 9 Rattitude
+ * @value 12 Follow Me
  */
 PARAM_DEFINE_INT32(COM_FLTMODE3, -1);
 
@@ -345,6 +353,7 @@ PARAM_DEFINE_INT32(COM_FLTMODE3, -1);
  * @value 7 Offboard
  * @value 8 Stabilized
  * @value 9 Rattitude
+ * @value 12 Follow Me
  */
 PARAM_DEFINE_INT32(COM_FLTMODE4, -1);
 
@@ -367,6 +376,7 @@ PARAM_DEFINE_INT32(COM_FLTMODE4, -1);
  * @value 7 Offboard
  * @value 8 Stabilized
  * @value 9 Rattitude
+ * @value 12 Follow Me
  */
 PARAM_DEFINE_INT32(COM_FLTMODE5, -1);
 
@@ -389,5 +399,6 @@ PARAM_DEFINE_INT32(COM_FLTMODE5, -1);
  * @value 7 Offboard
  * @value 8 Stabilized
  * @value 9 Rattitude
+ * @value 12 Follow Me
  */
 PARAM_DEFINE_INT32(COM_FLTMODE6, -1);
